@@ -23,7 +23,8 @@ def save_pretrained_audio_model():
             for block in tqdm(resp.iter_content(1024)):
                 f.write(block)
 
-def create_embeds():
+
+def create_embeds(prefix):
     import torch
     import fairseq
     model_path = 'media/models/audio_model.pt'
@@ -31,6 +32,6 @@ def create_embeds():
     model = model[0]
     model.eval()
 
-    wav_input_16khz = torch.randn(1,10000)
+    wav_input_16khz = torch.randn(1, 10000)
     z = model.feature_extractor(wav_input_16khz)
     c = model.feature_aggregator(z)

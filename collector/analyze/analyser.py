@@ -2,7 +2,7 @@ import json
 import os
 from django.conf import settings
 from .file_handler import extract_audio_from_clip, split_video_file
-from .embeds import save_pretrained_audio_model
+from .embeds import create_embeds, save_pretrained_audio_model
 
 
 class Analyser:
@@ -20,7 +20,7 @@ class Analyser:
 
     def analyze_audio(self):
         save_pretrained_audio_model()
-
+        # create_embeds(self.prefix)
         audio_result_dict = {'result': [{'time_start': 3.12, 'time_end': 4.15}]}
         audio_result_json = json.dumps(audio_result_dict)
         self.results['audio'] = audio_result_json
